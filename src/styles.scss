@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -20,13 +19,15 @@ $sampleApp-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$sampleApp-theme: mat.define-light-theme((
-  color: (
-    primary: $sampleApp-primary,
-    accent: $sampleApp-accent,
-    warn: $sampleApp-warn,
+$sampleApp-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $sampleApp-primary,
+      accent: $sampleApp-accent,
+      warn: $sampleApp-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -35,5 +36,34 @@ $sampleApp-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 30px;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+.space-top {
+  margin-top: 1%;
+}
+
+.row-add-fruits {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.full-height {
+  height: 100%;
+}
