@@ -1,81 +1,64 @@
-<div class="full-width fruits-names">
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="saveLocally()"
-    class="full-width"
-  >
-    Save list locally
-  </button>
-
-  <mat-form-field class="example-chip-list full-width" appearance="fill">
-    <mat-label>List of names</mat-label>
-    <mat-chip-list #chipList aria-label="Fruit selection">
-      <mat-chip *ngFor="let fruit of fruits" (removed)="remove(fruit)">
-        {{ fruit.name }}
-        <button matChipRemove>
-          <mat-icon>cancel</mat-icon>
-        </button>
-      </mat-chip>
-      <input
-        placeholder=""
-        [matChipInputFor]="chipList"
-        (matChipInputTokenEnd)="add($event)"
-      />
-    </mat-chip-list>
-  </mat-form-field>
-
-  <div class="row-add-fruits">
-    <form [formGroup]="fruitForm" class="half-width full-height">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>New name</mat-label>
-        <input formControlName="fruitName" name="fruitName" matInput />
-      </mat-form-field>
-    </form>
-
+<div class="sample-page">
+  <div class="full-width items-names">
     <button
-      mat-stroked-button
+      mat-raised-button
       color="primary"
-      (click)="addNewFruit()"
-      [disabled]="!fruitForm.valid"
-      class="half-width"
+      (click)="saveLocally()"
+      class="full-width"
     >
-      Click to add a new fruit
+      Save list
     </button>
+
+    <mat-form-field class="example-chip-list full-width" appearance="fill">
+      <mat-label>List of names</mat-label>
+      <mat-chip-list #chipList aria-label="item selection">
+        <mat-chip *ngFor="let item of items" (removed)="remove(item)">
+          {{ item.name }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input
+          placeholder=""
+          [matChipInputFor]="chipList"
+          (matChipInputTokenEnd)="add($event)"
+        />
+      </mat-chip-list>
+    </mat-form-field>
   </div>
-</div>
 
-<div class="full-width space-top">
-  <button
-    mat-raised-button
-    color="accent"
-    (click)="sampleFruit()"
+  <div class="full-width space-top">
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="sampleItem()"
+      class="full-width"
+    >
+      Run sample
+    </button>
+
+    <mat-form-field fxFill appearance="outline" class="full-width space-top">
+      <input matInput type="text" [formControl]="sampleControl" />
+
+      <mat-label>Leader name</mat-label>
+    </mat-form-field>
+  </div>
+
+  <table
+    mat-table
+    [dataSource]="randomSample"
     class="full-width"
+    aria-describedby="randomSample"
+    fxLayoutGap="2%"
   >
-    Run sample
-  </button>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>
+        <span class="table-header">Random list order </span>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
+    </ng-container>
 
-  <mat-form-field fxFill appearance="outline" class="full-width space-top">
-    <input matInput type="text" [formControl]="sampleControl" />
-
-    <mat-label>Leader name</mat-label>
-  </mat-form-field>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 </div>
-
-<table
-  mat-table
-  [dataSource]="randomSample"
-  class="full-width"
-  aria-describedby="randomSample"
-  fxLayoutGap="2%"
->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>
-      <span class="table-header">Random list order </span>
-    </th>
-    <td mat-cell *matCellDef="let element">{{ element?.name }}</td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>

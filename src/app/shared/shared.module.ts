@@ -35,6 +35,9 @@ import { TranslateModule } from '@ngx-translate/core';
 
 
 
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
+
 var module = [
   CommonModule,
   FlexLayoutModule,
@@ -76,6 +79,8 @@ var module = [
 @NgModule({
   declarations: [
 
+
+    PageNotFoundComponent
   ],
   imports: [
     module,

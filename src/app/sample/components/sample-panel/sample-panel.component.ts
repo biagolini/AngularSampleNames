@@ -4,7 +4,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 
-export interface Fruit {
+export interface Item {
   name: any;
 }
 
@@ -22,7 +22,7 @@ export class SamplePanelComponent implements OnInit {
   addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
 
-  fruits: Fruit[] = [ ];
+  items: Item[] = [ ];
 
   displayedColumns = ['name'];
 
@@ -30,69 +30,69 @@ export class SamplePanelComponent implements OnInit {
 
   randomSample = new MatTableDataSource();
 
-  fruitForm = this.form.group({
-    fruitName: ['', Validators.required],
+  itemForm = this.form.group({
+    itemName: ['', Validators.required],
   });
 
 
   ngOnInit(): void {
     this.randomSample.data = [];
-    var aux:any = localStorage.getItem("storedFruits");
+    var aux:any = localStorage.getItem("storeItens");
     let storeAux = JSON.parse(aux);
     storeAux.forEach((element: any) => {
-      this.fruits= [...this.fruits,element];
+      this.items= [...this.items,element];
     })
   }
 
 
   sampleOrder(){
     this.randomSample.data = [];
-    let n:number= this.fruits.length;
-    let fruitsCopy= [...this.fruits];
+    let n:number= this.items.length;
+    let itemsCopy= [...this.items];
     for(let i = 0; i<n; i++){
-      let nSorteado = Math.floor(Math.random() *  fruitsCopy.length);
-      this.randomSample.data = [...this.randomSample.data,fruitsCopy[nSorteado]]
-      fruitsCopy.splice(nSorteado,1)
+      let nSorteado = Math.floor(Math.random() *  itemsCopy.length);
+      this.randomSample.data = [...this.randomSample.data,itemsCopy[nSorteado]]
+      itemsCopy.splice(nSorteado,1)
       }
   }
 
   saveLocally(){
-    localStorage.setItem("storedFruits", JSON.stringify(this.fruits));
+    localStorage.setItem("storeItens", JSON.stringify(this.items));
   }
 
 
-  sampleFruit() {
-    let sorteado = this.fruits[Math.floor(Math.random() *  this.fruits.length)];
+  sampleItem() {
+    let sorteado = this.items[Math.floor(Math.random() *  this.items.length)];
     this.sampleControl.setValue(sorteado.name)
 
     this.sampleOrder()
   }
 
 
-  addNewFruit() {
-    this.fruits.push({ name: this.fruitForm.value.fruitName });
-    this.fruitForm.setValue({
-      fruitName: '',
+  addNewItem() {
+    this.items.push({ name: this.itemForm.value.itemName });
+    this.itemForm.setValue({
+      itemName: '',
     });
   }
 
   add(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
-    // Add our fruit
+    // Add our item
     if (value) {
-      this.fruits.push({ name: value });
+      this.items.push({ name: value });
     }
 
     // Clear the input value
     event.chipInput!.clear();
   }
 
-  remove(fruit: Fruit): void {
-    const index = this.fruits.indexOf(fruit);
+  remove(item: Item): void {
+    const index = this.items.indexOf(item);
 
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      this.items.splice(index, 1);
     }
   }
 
