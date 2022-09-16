@@ -10,7 +10,7 @@
     </button>
 
     <mat-form-field class="example-chip-list full-width" appearance="fill">
-      <mat-label>List of names</mat-label>
+      <mat-label>List of items</mat-label>
       <mat-chip-list #chipList aria-label="item selection">
         <mat-chip *ngFor="let item of items" (removed)="remove(item)">
           {{ item.name }}

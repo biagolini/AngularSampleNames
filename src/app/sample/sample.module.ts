@@ -1,9 +1,9 @@
-import { SharedModule } from './../shared/shared.module';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { SampleRoutingModule } from './sample-routing.module';
+import { SharedModule } from './../shared/shared.module';
 import { SamplePanelComponent } from './components/sample-panel/sample-panel.component';
+import { SampleRoutingModule } from './sample-routing.module';
 
 
 @NgModule({

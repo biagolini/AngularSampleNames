@@ -1,7 +1,7 @@
-import { COMMA, ENTER, V } from '@angular/cdk/keycodes';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, OnInit } from '@angular/core';
-import { MatChipInputEvent } from '@angular/material/chips';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatTableDataSource } from '@angular/material/table';
 
 export interface Item {
